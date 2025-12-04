@@ -5,7 +5,18 @@ resources:
   - namespace.yaml
   - harbor-secret.yaml
   - config-db.yaml
-  - postgres/
-  - backend/
-  - frontend/
+
+  # postgres
+  - postgres/deployment.yaml
+  - postgres/pvc.yaml
+  - postgres/service.yaml
+
+  # backend
+  - backend/deployment.yaml
+  - backend/service.yaml
+
+  # frontend
+  - frontend/deployment.yaml
+  - frontend/service.yaml
+
   - ingress.yaml
