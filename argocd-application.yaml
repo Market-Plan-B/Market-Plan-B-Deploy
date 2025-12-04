@@ -11,7 +11,7 @@ spec:
     path: k8s
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: skala-pratice      # 실제 네임스페이스
+    namespace: skala-practice      # 실제 네임스페이스
   syncPolicy:
     automated:
       prune: true
