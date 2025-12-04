@@ -20,6 +20,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
+          env:
+            - name: PYTHONPATH
+              value: /app
           envFrom:
             - secretRef:
                 name: db-secret
