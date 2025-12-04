@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-deployment
+  name: oil-postgres-deployment
   labels:
-    app: postgres
+    app: oil-postgres
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: oil-postgres
   template:
     metadata:
       labels:
-        app: postgres
+        app: oil-postgres
     spec:
       containers:
         - name: postgres

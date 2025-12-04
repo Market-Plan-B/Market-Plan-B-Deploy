@@ -13,7 +13,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: frontend-service
+                name: oil-frontend-service
                 port:
                   number: 3000
     - host: api.example.com
@@ -23,6 +23,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: backend-service
+                name: oil-backend-service
                 port:
                   number: 8000
