@@ -5,7 +5,7 @@ metadata:
   labels:
     app: oil-backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: oil-backend
@@ -16,18 +16,40 @@ spec:
     spec:
       containers:
         - name: oil-backend
-          image: amdp-registry.skala-ai.com/skala25a/oil-backend:latest  # 백엔드 레포에서 푸시하는 경로
+          image: amdp-registry.skala-ai.com/skala25a/oil-backend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:
             - name: PYTHONPATH
               value: /app
+            - name: LANGCHAIN_PROJECT
+              value: "CH14-Retriever"
+            - name: MODEL
+              value: "gpt-3.5-turbo"
+            - name: DEBUG
+              value: "False"
           envFrom:
+            - secretRef:
+                name: backend-secret
             - secretRef:
                 name: db-secret
             - configMapRef:
                 name: db-config
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1000m"
+            limits:
+              memory: "4Gi"
+              cpu: "2000m"
+          volumeMounts:
+            - name: dshm
+              mountPath: /dev/shm
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
       imagePullSecrets:
         - name: harbor-secret
-
