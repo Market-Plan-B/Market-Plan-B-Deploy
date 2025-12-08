@@ -24,7 +24,10 @@ jobs:
         version: 'latest'
         
     - name: Deploy to Kubernetes
+      env:
+        KUBECONFIG: ${{ github.workspace }}/kubeconfig
       run: |
-        echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/kubeconfig
-        export KUBECONFIG=$HOME/kubeconfig
+        echo "${{ secrets.KUBECONFIG }}" | base64 -d > ${{ github.workspace }}/kubeconfig
+        chmod 600 ${{ github.workspace }}/kubeconfig
+        kubectl cluster-info
         kubectl apply -k k8s/ -n ${{ env.NAMESPACE }}
