@@ -25,6 +25,6 @@ jobs:
         
     - name: Deploy to Kubernetes
       run: |
-        echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
-        export KUBECONFIG=kubeconfig
+        echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/kubeconfig
+        export KUBECONFIG=$HOME/kubeconfig
         kubectl apply -k k8s/ -n ${{ env.NAMESPACE }}
