@@ -31,7 +31,7 @@ spec:
               value: "False"
           envFrom:
             - secretRef:
-                name: backend-secret
+                name: oil-backend-secret
             - secretRef:
                 name: db-secret
             - configMapRef:
