@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oil-auth-deployment
+  labels:
+    app: oil-auth
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: auth=amdp-registry.skala-ai.com/skala25a/oil-auth
+    argocd-image-updater.argoproj.io/auth.update-strategy: latest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oil-auth
+  template:
+    metadata:
+      labels:
+        app: oil-auth
+    spec:
+      containers:
+        - name: oil-auth
+          image: amdp-registry.skala-ai.com/skala25a/oil-auth:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: oil-auth-secret
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: harbor-secret
+

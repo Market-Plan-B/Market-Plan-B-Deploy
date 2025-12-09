@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oil-auth-service
+spec:
+  type: ClusterIP
+  selector:
+    app: oil-auth
+  ports:
+    - port: 8080
+      targetPort: 8080
+

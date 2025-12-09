@@ -18,4 +18,8 @@ resources:
   - frontend/deployment.yaml
   - frontend/service.yaml
 
+  # auth
+  - auth/deployment.yaml
+  - auth/service.yaml
+
   - ingress.yaml
