@@ -15,8 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout code
+    - name: Checkout deploy repo
       uses: actions/checkout@v4
+
+    - name: Checkout frontend repo
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ secrets.FRONTEND_REPO }}
+        token: ${{ secrets.GH_PAT }}
+        path: frontend
 
     - name: Login to Harbor
       uses: docker/login-action@v3
