@@ -41,10 +41,10 @@ spec:
                 name: db-config
           resources:
             requests:
-              memory: "1Gi"
-              cpu: "100m"
+              memory: "512Mi"
+              cpu: "250m"
             limits:
-              memory: "2Gi"
+              memory: "1Gi"
               cpu: "500m"
           volumeMounts:
             - name: dshm
