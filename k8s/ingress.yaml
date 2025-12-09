@@ -16,6 +16,7 @@ spec:
     - hosts:
         - oil-app.skala25a.project.skala-ai.com
         - oil-api.skala25a.project.skala-ai.com
+        - oil-auth.skala25a.project.skala-ai.com
       secretName: oil-tls-secret
   rules:
     - host: oil-app.skala25a.project.skala-ai.com
