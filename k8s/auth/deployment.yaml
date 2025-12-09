@@ -23,9 +23,22 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+              value: "true"
+            - name: SPRING_JPA_SHOW_SQL
+              value: "false"
           envFrom:
             - secretRef:
                 name: oil-auth-secret
+            - secretRef:
+                name: db-secret
+            - configMapRef:
+                name: db-config
           resources:
             requests:
               memory: "128Mi"
