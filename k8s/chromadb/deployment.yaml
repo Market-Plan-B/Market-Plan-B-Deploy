@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oil-chromadb-deployment
+  labels:
+    app: oil-chromadb
+  namespace: skala-practice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oil-chromadb
+  template:
+    metadata:
+      labels:
+        app: oil-chromadb
+    spec:
+      containers:
+      - name: oil-chromadb
+        image: chromadb/chroma:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: CHROMA_SERVER_AUTH_CREDENTIALS
+          value: "skala:Skala25a!23$"
+        - name: CHROMA_SERVER_AUTH_PROVIDER
+          value: "chromadb.auth.basic.BasicAuthServerProvider"
+        volumeMounts:
+        - name: chromadb-data
+          mountPath: /chroma/chroma
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: chromadb-data
+        persistentVolumeClaim:
+          claimName: chromadb-pvc

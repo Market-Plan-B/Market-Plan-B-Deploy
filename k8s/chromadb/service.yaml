@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oil-chromadb
+  namespace: skala-practice
+spec:
+  selector:
+    app: oil-chromadb
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+  type: ClusterIP

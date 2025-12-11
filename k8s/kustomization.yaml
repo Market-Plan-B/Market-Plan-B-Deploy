@@ -22,4 +22,9 @@ resources:
   - auth/deployment.yaml
   - auth/service.yaml
 
+  # chromadb
+  - chromadb/deployment.yaml
+  - chromadb/service.yaml
+  - chromadb/pvc.yaml
+
   - ingress.yaml
